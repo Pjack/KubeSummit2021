@@ -53,6 +53,10 @@ Use root and the password login later
 kubectl get secret -n gitlab gitlab-wildcard-tls-ca -o jsonpath="{['data']['cfssl_ca']}" | base64 --decode > gitlab-ca.crt
 sudo cp gitlab-ca.crt /usr/local/share/ca-certificates
 sudo update-ca-certificates -f
+```
+
+Troubleshooting: may need to restart microk8s to reload the certificate
+```bash
 microk8s stop && microk8s start
 ```
 
@@ -71,6 +75,10 @@ It should works when access from VM. For your laptop, you can type "thisisunsafe
 curl https://gitlab.example.com/
 ```
 
+Modify /etc/hosts on the laptop , use the ip of ens3 on VM
+```text
+10.18.24.155 gitlab.example.com
+```
 * Check login 
 * Check the runner
 
