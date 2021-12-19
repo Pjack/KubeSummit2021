@@ -24,9 +24,15 @@ microk8s.helm3 -n gitlab upgrade \
 --set certmanager-issuer.email=kubesummit2021@canonical.com \
 -f value.yaml
 
-kubectl set resources deployment gitlab-webservice-default --requests cpu=100m,memory=256Mi
-kubectl set resources deployment gitlab-sidekiq-all-in-1-v2 --requests cpu=100m,memory=256Mi
+# The total memory size set by gitlab is over 8G which is too large to most laptop
+# shrink it to smaller size
 
+kubectl set resources deployment gitlab-sidekiq-all-in-1-v2 --requests cpu=100m,memory=256Mi
+kubectl set resources deployment gitlab-webservice-default --requests cpu=100m,memory=256Mi
+kubectl scale --replicas=0 deployment gitlab-sidekiq-all-in-1-v2 
+kubectl scale --replicas=1 deployment gitlab-sidekiq-all-in-1-v2 
+kubectl scale --replicas=0 deployment gitlab-webservice-default
+kubectl scale --replicas=2 deployment gitlab-webservice-default
 ```
 
 Have to wait maybe 10-15 min, take a coffee here ~ 
