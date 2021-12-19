@@ -3,9 +3,9 @@
 # - Services that are not compatible with how microk8s runs are disabled
 
 # Minimal settings
-global:  edition: ce
+global:
   ingress:
-    enabled: true  edition: ce
+    enabled: true
     configureCertmanager: false
     class: "public"
   hosts:
