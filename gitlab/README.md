@@ -13,7 +13,7 @@ For other case, please refer https://docs.gitlab.com/charts/installation/tls.htm
 ```bash
 kubectl create namespace gitlab
 kubectl config set-context --current --namespace=gitlab
-microk8s enable helm3
+microk8s enable helm3 ingress
 microk8s.helm3 repo add gitlab https://charts.gitlab.io/
 microk8s.helm3 repo update
 
