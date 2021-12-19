@@ -55,7 +55,7 @@ Open browser e.g. `https://dashboard-10.18.24.178.nip.io/`
 
 Note: type `thisisunsafe` to bypass the self-signed certificate or import it into chrome browser
 
-# Better after 1.23
+# Addon after 1.23
 
 ```bash
 microk8s enable dashboard-ingress 
