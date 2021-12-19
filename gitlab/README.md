@@ -7,6 +7,9 @@ Gitlab-ee
 
 Download [value.yaml](value.yaml) 
 
+Note: This value.yaml is designed for gitlab server using self-signed certificate.
+For other case, please refer https://docs.gitlab.com/charts/installation/tls.html
+
 ```bash
 kubectl create namespace gitlab
 kubectl config set-context --current --namespace=gitlab
@@ -29,8 +32,7 @@ Have to wait maybe 10-15 min, take a coffee here ~
 ```bash
 kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 -d && echo
 ```
-
-Use root/<password> login later
+Use root and the password login later
 
 # Handle self-signed certificate issue
 
@@ -62,7 +64,28 @@ curl https://gitlab.example.com/
 * Check login 
 * Check the runner
 
+# KAS & Agent
+ 
+https://docs.gitlab.com/ee/user/clusters/agent/install/index.html
+https://about.gitlab.com/blog/2020/09/22/introducing-the-gitlab-kubernetes-agent/
 
+You may encounter this issue when the gitlab server using self-signed certificate.  
+  
+https://docs.gitlab.com/ee/user/clusters/agent/#error-while-dialing-failed-to-websocket-dial-failed-to-send-handshake-request   
+
+> It’s not possible to set the grpc scheme due to the issue It is not possible to configure KAS to work with grpc without directly editing GitLab KAS deployment. To use grpc while the issue is in progress, directly edit the deployment with the kubectl edit deployment gitlab-kas command, and change --listen-websocket=true to --listen-websocket=false. After running that command, you should be able to use grpc://gitlab-kas.<YOUR-NAMESPACE>:8150.
+
+
+You need to disable the web-socket at k8s agent server. (Already setup in [value.yaml](value.yaml))
+
+And then change the kas-address to internal grpc  
+  
+```bash
+kubectl edit deployment -n gitlab-kubernetes-agent gitlab-agent
+```
+
+Change the kas-address as `grpc://gitlab-kas.gitlab.svc.cluster.local:8150`
+  
 
 
 
