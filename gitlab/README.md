@@ -24,6 +24,9 @@ microk8s.helm3 -n gitlab upgrade \
 --set certmanager-issuer.email=kubesummit2021@canonical.com \
 -f value.yaml
 
+kubectl set resources deployment gitlab-webservice-default --requests cpu=100m,memory=256Mi
+kubectl set resources deployment gitlab-sidekiq-all-in-1-v2 --requests cpu=100m,memory=256Mi
+
 ```
 
 Have to wait maybe 10-15 min, take a coffee here ~ 
