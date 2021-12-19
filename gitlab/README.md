@@ -64,6 +64,11 @@ curl https://gitlab.example.com/
 * Check login 
 * Check the runner
 
+# Demo Project
+
+Import the project from https://gitlab.com/pjack.chen/simple-agent-k
+Try CI/CD with your micro cloud
+
 # KAS & Agent
  
 https://docs.gitlab.com/ee/user/clusters/agent/install/index.html
