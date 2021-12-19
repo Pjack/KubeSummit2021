@@ -52,7 +52,7 @@ https://ubuntu.com/tutorials/install-a-local-kubernetes-with-microk8s
 Installation
 
 ```bash
-sudo snap install microk8s --classic
+sudo snap install microk8s --classic --channel=1.23/stable
 microk8s status
 sudo usermod -a -G microk8s $USER
 mkdir ~/.kube
@@ -85,7 +85,7 @@ sudo systemctl restart dnsmasq.service
 
 ### Turn on add-on
 
-Get your host ip by `ip --brief address show ens3`
+Get your host ip by `ip --brief address show vxlan.calico`
 
 ```bash
 microk8s enable storage helm3
