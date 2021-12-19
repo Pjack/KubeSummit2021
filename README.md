@@ -34,7 +34,7 @@ ping 8.8.8.8
 ```
 
 Troubleshooting
-* if public network is not available, it may be the default FORWARD policy is DROP in iptable.
+* if public network is not available, it may be the default FORWARD policy is DROP in iptable. Setup the iptables on your laptop.
 
 ```bash
 sudo iptables -L
@@ -52,45 +52,56 @@ https://ubuntu.com/tutorials/install-a-local-kubernetes-with-microk8s
 Installation
 
 ```bash
-sudo apt-get install ubuntu-fan
-sudo snap install microk8s --classicdnsmasq-base
+sudo snap install microk8s --classic
 microk8s status
 sudo usermod -a -G microk8s $USER
 mkdir ~/.kube
 sudo chown -f -R $USER ~/.kube
 echo "alias kubectl='microk8s kubectl'" >> ~/.bash_aliases
-newgrp microk8s
+echo 'source <(microk8s.kubectl completion bash)' >>~/.bashrc
 ```
+logout and enter the shell again
 
 Verification
 
 ```bash
-microk8s status --wait-ready
+microk8s status --wait-readymicrok8s.kubectl completion bash > /etc/bash_completion.d/kubectl
 kubectl get nodes
 kubectl get services
 kubectl cluster-info
 ```
 
-Troubleshooting: logout and login again if need.
+### DNS (Only for Workshop)
 
+Create a self-managed DNS that we can assign ip for self-managed gitlab later.
+
+```bash
+sudo apt update
+sudo apt-get install -y dnsmasq
+sudo sed -i 's/#interface=.*/interface=vxlan.calico/' /etc/dnsmasq.conf
+sudo sed -i 's/#bind-interfaces/bind-interfaces/' /etc/dnsmasq.conf
+sudo systemctl restart dnsmasq.service
+```
 
 ### Turn on add-on
 
+Get your host ip by `ip --brief address show ens3`
 
 ```bash
-microk8s enable storage helm3 dns
-
+microk8s enable storage helm3
+microk8s enable dns:<your host ip>
 ```
 
-Get your host ip by `ip --brief address show`
+Put these entries in /etc/hosts that we will use it later
+```text
+<host ip> gitlab.example.com
+<host ip> registry.example.com
+<host ip> mimio.example.com
+```
 
-
-
-
-
-
-
-
-
-
-
+Verification
+```
+kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools
+nslookup www.google.com
+nslookup kubernetes.default.svc.cluster.local
+```
