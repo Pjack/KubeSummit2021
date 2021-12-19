@@ -27,7 +27,7 @@ Other reference for `how to use multipass`
 Please use **lower** case for the VM's name. It will be used by hostname and upper case may cause some problem in k8s.
 
 ```bash
-multipass launch -c 2 -m 4G -d 15G -n workshop
+multipass launch -c 2 -m 6G -d 15G -n workshop
 multipass list
 multipass shell workshop
 ping 8.8.8.8
