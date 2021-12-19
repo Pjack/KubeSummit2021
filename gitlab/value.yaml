@@ -3,9 +3,9 @@
 # - Services that are not compatible with how microk8s runs are disabled
 
 # Minimal settings
-global:
+global:  edition: ce
   ingress:
-    enabled: true
+    enabled: true  edition: ce
     configureCertmanager: false
     class: "public"
   hosts:
@@ -16,8 +16,7 @@ global:
       agent:
         listen:
           websocket: false
-#  minio:
-#    enabled: false
+#  edition: ce          
 # Don't use certmanager, we'll self-sign
 certmanager:
   install: false
