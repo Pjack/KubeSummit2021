@@ -34,7 +34,7 @@ ping 8.8.8.8
 ```
 
 Troubleshooting
-* if public network is not available, it may be the default FORWARD policy is DROP in iptable. Setup the iptables on your laptop.
+if public network is not available, it may be the default FORWARD policy is DROP in iptable. Setup the iptables on your laptop.
 
 ```bash
 sudo iptables -L
@@ -65,7 +65,7 @@ logout and enter the shell again
 Verification
 
 ```bash
-microk8s status --wait-readymicrok8s.kubectl completion bash > /etc/bash_completion.d/kubectl
+microk8s status --wait-ready
 kubectl get nodes
 kubectl get services
 kubectl cluster-info
@@ -104,4 +104,5 @@ Verification
 kubectl run -it --rm --restart=Never --image=infoblox/dnstools:latest dnstools
 nslookup www.google.com
 nslookup kubernetes.default.svc.cluster.local
+nslookup gitlab.example.com
 ```
