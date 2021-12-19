@@ -59,5 +59,8 @@ Note: type `thisisunsafe` to bypass the self-signed certificate or import it int
 
 ```bash
 microk8s enable dashboard-ingress 
+```
+Change the FQDN to match VM's ip e.g. `https://dashboard-10.18.24.178.nip.io/`
+```bash
 kubectl edit ing kubernetes-dashboard-ingress -n kube-system
 ```
