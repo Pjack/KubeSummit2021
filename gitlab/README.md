@@ -5,7 +5,7 @@ Gitlab-ee
 * https://docs.gitlab.com/ee/install/docker.html
 * https://docs.gitlab.com/charts/installation/
 
-Download [value.yaml](gitlab/value.yaml) 
+Download [value.yaml](value.yaml) 
 
 ```bash
 microk8s enable helm3
