@@ -14,8 +14,7 @@ kubectl expose deployment microbot --type=NodePort --port=80 --name=microbot-ser
 
 Verification
 
-Get the Node and open browser http://<your vm ip>:<nodeport>/
-
 ```bash
 kubectl get all
 ```
+Get the node port and open browser `http://<your vm ip>:<nodeport>/`
