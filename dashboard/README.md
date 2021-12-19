@@ -13,7 +13,7 @@ microk8s enable dashboard ingress
 
 Create dashboard-ing.yaml, please remember to change the <yourvmip>.
 
-```yamlhttps://dashboard-10.18.24.178.nip.io/
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -33,15 +33,20 @@ spec:
       paths:
       - path: /
         pathType: Prefix
-        backend:                                                                                                                
+        backend:
           service:
             name: kubernetes-dashboard
             port:
               number: 443
 ```
 
+Create the ingress  
 ```bash
 kubectl apply -f dashboard-ing.yaml
+```
+
+Get login token  
+```  
 token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 kubectl -n kube-system describe secret $token
 ```
@@ -54,4 +59,5 @@ Note: type `thisisunsafe` to bypass the self-signed certificate or import it int
 
 ```bash
 microk8s enable dashboard-ingress 
+kubectl edit ing kubernetes-dashboard-ingress -n kube-system
 ```
