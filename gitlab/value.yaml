@@ -1,0 +1,51 @@
+# value.yaml                                                                                                       
+# This example intended as baseline to use microk8s for the deployment of GitLab
+# - Services that are not compatible with how microk8s runs are disabled
+
+# Minimal settings
+global:
+  ingress:
+    enabled: true
+    configureCertmanager: false
+    class: "public"
+  hosts:
+    domain: example.com
+  kas:
+    enabled: true
+    customConfig:
+      agent:
+        listen:
+          websocket: false
+#  minio:
+#    enabled: false
+# Don't use certmanager, we'll self-sign
+certmanager:
+  install: false
+# Use the `ingress` addon, not our Ingress (can't map 22/80/443)
+nginx-ingress:
+  enabled: false
+# Provide gitlab-runner with secret object containing self-signed certificate chain
+gitlab-runner:
+  certsSecretName: gitlab-wildcard-tls-chain
+  runners:
+    privileged: true
+    config: |
+      [[runners]]
+        [runners.kubernetes]
+        image = "ubuntu:20.04"
+        privileged = true
+        {{- if .Values.global.minio.enabled }}
+        [runners.cache]
+          Type = "s3"
+          Path = "gitlab-runner"
+          Shared = true
+          [runners.cache.s3]
+            ServerAddress = {{ include "gitlab-runner.cache-tpl.s3ServerAddress" . }}
+            BucketName = "runner-cache"
+            BucketLocation = "us-east-1"
+            Insecure = false
+        {{ end }}
+        [[runners.kubernetes.volumes.empty_dir]]
+          name = "docker-certs"
+          mount_path = "/certs/client"
+          medium = "Memory"
