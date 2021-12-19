@@ -17,6 +17,7 @@ microk8s enable helm3
 microk8s.helm3 repo add gitlab https://charts.gitlab.io/
 microk8s.helm3 repo update
 
+wget https://raw.githubusercontent.com/Pjack/KubeSummit2021/main/gitlab/value.yaml
 microk8s.helm3 -n gitlab upgrade \
 --install gitlab gitlab/gitlab  \
 --timeout 600s  \
