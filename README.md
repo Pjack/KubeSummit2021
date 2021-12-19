@@ -86,10 +86,11 @@ sudo systemctl restart dnsmasq.service
 
 ### Turn on add-on
 
-Get your host ip by `ip --brief address show vxlan.calico`
+Get your host ip by `ip --brief addr show`
 
 ```bash
 microk8s enable storage helm3
+ip --brief address show vxlan.calico
 microk8s enable dns:<your host ip>
 ```
 
