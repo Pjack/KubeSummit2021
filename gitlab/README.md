@@ -34,7 +34,7 @@ kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath='{.
 ```
 Use root and the password login later
 
-# Handle self-signed certificate issue
+# Handle self-signed certificate
 
 * Import the CA into browser
 * Import the CA into system 
@@ -66,8 +66,7 @@ curl https://gitlab.example.com/
 
 # Demo Project
 
-Import the project from https://gitlab.com/pjack.chen/simple-agent-k
-Try CI/CD with your micro cloud
+Import the project from [simple-agent-k](https://gitlab.com/pjack.chen/simple-agent-k), Try CI/CD with your micro cloud
 
 # KAS & Agent
  
