@@ -5,6 +5,8 @@ Gitlab-ee
 * https://docs.gitlab.com/ee/install/docker.html
 * https://docs.gitlab.com/charts/installation/
 
+Note: [Note support M1 MacOS](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26561)
+
 Download [value.yaml](value.yaml) 
 
 Note: This value.yaml is designed for gitlab server using self-signed certificate.
