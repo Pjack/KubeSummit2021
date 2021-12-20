@@ -72,7 +72,7 @@ kubectl get services
 kubectl cluster-info
 ```
 
-### DNS (Only for Workshop)
+### Self-Managed DNS (Only for Workshop)
 
 Create a self-managed DNS that we can assign ip for self-managed gitlab later.
 
@@ -85,6 +85,10 @@ sudo systemctl restart dnsmasq.service
 ```
 
 ### Turn on add-on
+
+`microk8s enable dns`  will use 8.8.8.8/8.8.4.4 as default DNS server
+
+We would like to use self-managed DNS server in this workshop
 
 Get your host ip by `ip --brief addr show`
 
