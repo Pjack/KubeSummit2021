@@ -5,7 +5,7 @@ Gitlab-ee
 * https://docs.gitlab.com/ee/install/docker.html
 * https://docs.gitlab.com/charts/installation/
 
-Note: [Note support M1 MacOS](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26561)
+Note: [Not support M1 MacOS](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26561)
 
 Download [value.yaml](value.yaml) 
 
