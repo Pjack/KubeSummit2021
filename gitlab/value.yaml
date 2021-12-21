@@ -11,7 +11,7 @@ global:
   hosts:
     domain: example.com
   kas:
-    enabled: true
+    enabled: false
     customConfig:
       agent:
         listen:
