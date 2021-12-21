@@ -43,15 +43,7 @@ Have to wait maybe 10-15 min, take a coffee here ~
 kubectl get po
 kubectl describe node
 ```
-
-# Get Root Password
-
-```bash
-kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 -d && echo
-```
-Use root and the password login later
-
-# Handle self-signed certificate
+# Handle self-signed certificate (Workshop Only)
 
 * Import the CA into browser
 * Import the CA into system 
@@ -88,6 +80,14 @@ Modify /etc/hosts on the laptop , use the ip of ens3 on VM
 ```
 * Check login 
 * Check the runner
+
+
+# Get Root Password
+
+```bash
+kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 -d && echo
+```
+Use root and the password login later
 
 # Demo Project
 
