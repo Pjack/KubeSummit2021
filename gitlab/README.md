@@ -29,12 +29,16 @@ microk8s.helm3 -n gitlab upgrade \
 # The total memory size set by gitlab is over 8G which is too large to most laptop
 # shrink it to smaller size
 
+kubectl delete hpa gitlab-webservice-default
+kubectl delete hpa gitlab-sidekiq-all-in-1-v2
+kubectl delete hpa gitlab-registry
 kubectl set resources deployment gitlab-sidekiq-all-in-1-v2 --requests cpu=100m,memory=256Mi
 kubectl set resources deployment gitlab-webservice-default --requests cpu=100m,memory=256Mi
 kubectl scale --replicas=0 deployment gitlab-sidekiq-all-in-1-v2 
-kubectl scale --replicas=1 deployment gitlab-sidekiq-all-in-1-v2 
+kubectl scale --replicas=1 deployment gitlab-sidekiq-all-in-1-v2
 kubectl scale --replicas=0 deployment gitlab-webservice-default
 kubectl scale --replicas=1 deployment gitlab-webservice-default
+kubectl scale --replicas=1 deployment gitlab-registry
 ```
 
 Have to wait maybe 10-15 min, take a coffee here ~ 
