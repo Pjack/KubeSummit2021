@@ -34,7 +34,7 @@ kubectl set resources deployment gitlab-webservice-default --requests cpu=100m,m
 kubectl scale --replicas=0 deployment gitlab-sidekiq-all-in-1-v2 
 kubectl scale --replicas=1 deployment gitlab-sidekiq-all-in-1-v2 
 kubectl scale --replicas=0 deployment gitlab-webservice-default
-kubectl scale --replicas=2 deployment gitlab-webservice-default
+kubectl scale --replicas=1 deployment gitlab-webservice-default
 ```
 
 Have to wait maybe 10-15 min, take a coffee here ~ 
