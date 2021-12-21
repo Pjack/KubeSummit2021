@@ -7,6 +7,7 @@ Enable Dashboard and Shared Nginx Ingress
 
 ```bash
 microk8s enable dashboard ingress
+ip --brief addr ens3
 ```
 
 # Add Ingress for the dashboard
@@ -58,7 +59,8 @@ Note: type `thisisunsafe` to bypass the self-signed certificate or import it int
 # Addon after 1.23
 
 ```bash
-microk8s enable dashboard-ingress 
+microk8s enable dashboard-ingress
+ip --brief addr show ens3
 ```
 Change the FQDN to match VM's ip e.g. `https://dashboard-10.18.24.178.nip.io/`
 ```bash
