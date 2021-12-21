@@ -39,6 +39,11 @@ kubectl scale --replicas=2 deployment gitlab-webservice-default
 
 Have to wait maybe 10-15 min, take a coffee here ~ 
 
+```
+kubectl get po
+kubectl describe node
+```
+
 # Get Root Password
 
 ```bash
