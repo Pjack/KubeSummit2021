@@ -97,6 +97,10 @@ Use root and the password login later
 
 Import the project from [simple-agent-k](https://gitlab.com/pjack.chen/simple-agent-k), Try CI/CD with your micro cloud
 
+```bash
+kubectl create ns demo
+```
+
 # KAS & Agent
  
 https://docs.gitlab.com/ee/user/clusters/agent/install/index.html
