@@ -16,7 +16,7 @@ microk8s enable dashboard ingress
 
 ```bash
 microk8s enable dashboard-ingress
-ip --brief addr ens3
+ip --brief addr show ens3
 ```
 
 Change the FQDN to match VM's ip e.g. `https://dashboard-10.18.24.178.nip.io/`
